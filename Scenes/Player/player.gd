@@ -108,6 +108,7 @@ func check_input_and_change_velocity(delta):
 
 
 func _physics_process(delta):
+	
 	current_time = Time.get_ticks_msec()
 	check_input_and_change_velocity(delta)
 	move_and_slide()
