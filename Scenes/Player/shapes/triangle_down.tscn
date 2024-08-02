@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwc7k44p6edac"]
+
+[ext_resource type="PackedScene" uid="uid://dqs4dqa4xqbrp" path="res://Scenes/Player/shapes/square.tscn" id="1_j1s3o"]
+[ext_resource type="Texture2D" uid="uid://dcprpm24t4m3h" path="res://Texture/Player/Shape-List.png" id="2_tsqm6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwy5i"]
+atlas = ExtResource("2_tsqm6")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjmv3"]
+atlas = ExtResource("2_tsqm6")
+region = Rect2(32, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkp1a"]
+atlas = ExtResource("2_tsqm6")
+region = Rect2(32, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e11vg"]
+atlas = ExtResource("2_tsqm6")
+region = Rect2(32, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqyjq"]
+atlas = ExtResource("2_tsqm6")
+region = Rect2(32, 32, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8cuo"]
+atlas = ExtResource("2_tsqm6")
+region = Rect2(32, 40, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4aw3o"]
+atlas = ExtResource("2_tsqm6")
+region = Rect2(32, 48, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poopf"]
+atlas = ExtResource("2_tsqm6")
+region = Rect2(32, 56, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r158w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwy5i")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjmv3")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkp1a")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e11vg")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqyjq")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8cuo")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4aw3o")
+}],
+"loop": true,
+"name": &"6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poopf")
+}],
+"loop": true,
+"name": &"7",
+"speed": 5.0
+}]
+
+[node name="Triangle_Down" instance=ExtResource("1_j1s3o")]
+shape_name = 5
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_r158w")
+animation = &"0"

@@ -1,0 +1,34 @@
+[gd_scene load_steps=11 format=3 uid="uid://b4d47i5clpg30"]
+
+[ext_resource type="Script" path="res://ShapeManager.gd" id="1_f1rkm"]
+[ext_resource type="Resource" uid="uid://cyvvdeh218iui" path="res://Scenes/Resources/shape_data.tres" id="2_6rhv6"]
+[ext_resource type="PackedScene" uid="uid://dwc7k44p6edac" path="res://Scenes/Player/shapes/triangle_down.tscn" id="3_4lmx4"]
+[ext_resource type="PackedScene" uid="uid://dqs4dqa4xqbrp" path="res://Scenes/Player/shapes/square.tscn" id="3_tjt7d"]
+[ext_resource type="PackedScene" uid="uid://b4vj461p3fehd" path="res://Scenes/Player/shapes/square_small.tscn" id="4_aj4v5"]
+[ext_resource type="PackedScene" uid="uid://c8whykrtaxx8e" path="res://Scenes/Player/shapes/square_big.tscn" id="5_eaxgt"]
+[ext_resource type="PackedScene" uid="uid://dr4vbhcske8cw" path="res://Scenes/Player/shapes/circle.tscn" id="6_6rpfg"]
+[ext_resource type="PackedScene" uid="uid://bmg84gm1w6x4s" path="res://Scenes/Player/shapes/triangle_up.tscn" id="7_nd5pe"]
+[ext_resource type="PackedScene" uid="uid://bxlmydps2qswh" path="res://Scenes/Player/shapes/tetsis.tscn" id="9_ut3nb"]
+[ext_resource type="PackedScene" uid="uid://bnbmg75hu8f5x" path="res://Scenes/Player/shapes/crown.tscn" id="10_bsoas"]
+
+[node name="ShapeManager" type="Node2D"]
+script = ExtResource("1_f1rkm")
+shape_data = ExtResource("2_6rhv6")
+
+[node name="Square small" parent="." instance=ExtResource("4_aj4v5")]
+shape_name = 0
+
+[node name="Square" parent="." instance=ExtResource("3_tjt7d")]
+
+[node name="Square Big" parent="." instance=ExtResource("5_eaxgt")]
+
+[node name="Circle" parent="." instance=ExtResource("6_6rpfg")]
+
+[node name="TriangleUp" parent="." instance=ExtResource("7_nd5pe")]
+
+[node name="Triangle_Down" parent="." instance=ExtResource("3_4lmx4")]
+position = Vector2(0, -1)
+
+[node name="Tetsis" parent="." instance=ExtResource("9_ut3nb")]
+
+[node name="Crown" parent="." instance=ExtResource("10_bsoas")]

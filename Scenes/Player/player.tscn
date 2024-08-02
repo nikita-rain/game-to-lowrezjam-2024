@@ -1,21 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddlls8mdx5iyf"]
+[gd_scene load_steps=6 format=3 uid="uid://ddlls8mdx5iyf"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_3slb7"]
-[ext_resource type="Texture2D" uid="uid://btsfk2m6eolh4" path="res://Texture/Player/Test White Square 4x4.png" id="1_aux0a"]
+[ext_resource type="PackedScene" uid="uid://b4d47i5clpg30" path="res://Scenes/Player/shape_manager.tscn" id="2_6xoco"]
+[ext_resource type="Script" path="res://Scenes/Player/AreaDestroy.gd" id="3_00pyk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ker4v"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uevdd"]
 size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydohm"]
+size = Vector2(6, 8)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_3slb7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_aux0a")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_ker4v")
-
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uevdd")
+
+[node name="ShapeManager" parent="." node_paths=PackedStringArray("player_collision_shape") instance=ExtResource("2_6xoco")]
+player_collision_shape = NodePath("../CollisionShape2D")
+
+[node name="AreaDestroy" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_00pyk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDestroy"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_ydohm")
+disabled = true
+
+[connection signal="switch_color" from="." to="ShapeManager" method="_on_player_switch_color"]
+[connection signal="switch_shape" from="." to="ShapeManager" method="_on_player_switch_shape"]
+[connection signal="body_entered" from="AreaDestroy" to="AreaDestroy" method="_on_body_entered"]

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8u1xmiwdl2e5"]
+
+[ext_resource type="PackedScene" uid="uid://3vduwo44e61s" path="res://Scenes/Player/PickableShapes/pickable_shape.tscn" id="1_ivwx2"]
+[ext_resource type="Texture2D" uid="uid://br51ciwnyg6kb" path="res://Texture/Player/ShapeBlank-List.png" id="2_0kgly"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jocbt"]
+atlas = ExtResource("2_0kgly")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ja5s"]
+atlas = ExtResource("2_0kgly")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ptylf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jocbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ja5s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="PickableShape" instance=ExtResource("1_ivwx2")]
+shape_name = 3
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_ptylf")
+frame_progress = 0.822166

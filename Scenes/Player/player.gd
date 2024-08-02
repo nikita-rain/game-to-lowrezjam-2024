@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-
+signal switch_shape() #TODO: добавить включение конкретной фигуры через меню
+signal switch_color()
 
 enum {AIR, GROUND, HORIZONTAL, VERTICAL, FALLING, HOVERING, JUMPING, JUMPING_TIME, JUMPING_AVIABLE}
 
@@ -9,8 +10,8 @@ var speed_dict = {
 	AIR : {
 		HORIZONTAL : [50, 100*60, 100*60],
 		VERTICAL : [0, 0, 0],
-		FALLING : [150, 50*60, 100*60],
-		HOVERING : [-5, 100*60, 0],
+		FALLING : [300, 50*60, 100*60],
+		HOVERING : [-10, 100*60, 0],
 		JUMPING : [150, 100*60, 100*60],
 		JUMPING_TIME : [100, 200], #msec
 		JUMPING_AVIABLE : false
@@ -44,20 +45,24 @@ var hover_time = 0
 var hover_start_time = 0
 var current_time = 0
 
+
 func update_location():
 	if is_on_floor():
 		jump_aviable_count = jump_max_count
 		floor_last_touched_time = current_time
 		location = GROUND
+		fall_fast_down(false)
+		ability_aviable = true
 	else:
 		if current_time - floor_last_touched_time > coyote_time_msec:
 			location = AIR
 
 func falling(delta):
 	#FALLING
-	velocity.y = move_toward(velocity.y, 
-		speed_dict[location][FALLING][MAX_SPEED],
-		speed_dict[location][FALLING][ACCELERATION] * delta)
+	if !is_jumping and !is_hovering:
+		velocity.y = move_toward(velocity.y, 
+			speed_dict[location][FALLING][MAX_SPEED],
+			speed_dict[location][FALLING][ACCELERATION] * delta)
 
 func moving(delta):
 	#MOVING
@@ -71,17 +76,27 @@ func moving(delta):
 
 func jumping_and_hovering(delta):
 	#JUMPING
+	var jump_aviable:bool = (
+		(speed_dict[location][JUMPING_AVIABLE] or jump_max_count > 1) 
+		and jump_aviable_count > 0
+		)
+	
 	if Input.is_action_just_pressed("move_jump"):
-		jump_last_pressed_time = Time.get_ticks_msec()
+		var ability_used = false
+		if !jump_aviable:
+			ability_used = ability_after_jump()
+		if !ability_used:
+			jump_last_pressed_time = Time.get_ticks_msec()
 	
 	var jump_pressed:bool = (current_time-jump_last_pressed_time) < jump_buffer_time_msec
-	var jump_aviable:bool = speed_dict[location][JUMPING_AVIABLE] and jump_aviable_count > 0 
+	
 	if jump_pressed and jump_aviable and !is_jumping: #and count jumps 
-		jump_aviable_count -= 1
+		jump_aviable_count  -= 1
 		is_jumping = true
 		is_hovering = false
 		jump_start_time = current_time
 		jump_time = speed_dict[location][JUMPING_TIME][0]
+		jump_last_pressed_time = 0
 	
 	var jump_is_over:bool = (current_time - jump_start_time) > jump_time
 	if jump_is_over and is_jumping:
@@ -98,17 +113,68 @@ func jumping_and_hovering(delta):
 		is_hovering = false
 	
 	if is_hovering:
-		velocity.y = move_toward(velocity.y, speed_dict[location][HOVERING][MAX_SPEED], speed_dict[location][HOVERING][ACCELERATION] * delta)
-
+		velocity.y = move_toward(
+			velocity.y,
+			speed_dict[location][HOVERING][MAX_SPEED], 
+			speed_dict[location][HOVERING][ACCELERATION] * delta)
+	
+	var fall_fast_over:bool = (current_time - fall_fast_start) > fall_fast_time
+	if fall_fast_over and is_fall_fast:
+		fall_fast_down(false)
+	
+	if is_fall_fast:
+		velocity.y = move_toward(
+			velocity.y,
+			fall_fast_speed[MAX_SPEED], 
+			fall_fast_speed[ACCELERATION] * delta)
+	
 func check_input_and_change_velocity(delta):
 	update_location()
 	falling(delta)
 	moving(delta)
 	jumping_and_hovering(delta)
 
+var ability_aviable = true
+func ability_after_jump():
+	if ability_aviable:
+		var shape_name = $ShapeManager.get_curr_shape_name()
+		match shape_name:
+			ShapeData.shape_names.TRIANGLE_DOWN:
+				fall_fast_down()
+				print_debug("способность применилась")
+				ability_aviable = false
+				return true
+	return false
+
+func make_switch_shape():
+	switch_shape.emit()
+	var shp_nm =  $ShapeManager.get_curr_shape_name()
+	if shp_nm == ShapeData.shape_names.CIRCLE:
+		jump_max_count = 2
+	else:
+		jump_max_count = 1
+	pass
+
+
+var is_fall_fast = false
+var fall_fast_time = 700
+var fall_fast_start = 0
+var fall_fast_speed = [400, 200*60, 200*60]
+func fall_fast_down(is_enable = true): #TODO: добавить обнаружение ломаемых и пропускаемых блоков блоков 
+	if is_enable:
+		fall_fast_start = current_time
+	
+	is_fall_fast = is_enable
+	if $AreaDestroy/CollisionShape2D.disabled != !is_enable:
+		$AreaDestroy/CollisionShape2D.set_deferred("disabled", !is_enable)
+	
+	
 
 func _physics_process(delta):
-	
 	current_time = Time.get_ticks_msec()
 	check_input_and_change_velocity(delta)
+	if Input.is_action_just_pressed("action_switch_shape"):
+		make_switch_shape()
+	if Input.is_action_just_pressed("action_switch_color"):
+		switch_color.emit()
 	move_and_slide()

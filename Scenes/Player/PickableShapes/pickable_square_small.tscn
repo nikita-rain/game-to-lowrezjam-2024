@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://nq41vjl41orx"]
+
+[ext_resource type="PackedScene" uid="uid://3vduwo44e61s" path="res://Scenes/Player/PickableShapes/pickable_shape.tscn" id="1_gvb61"]
+[ext_resource type="Texture2D" uid="uid://br51ciwnyg6kb" path="res://Texture/Player/ShapeBlank-List.png" id="2_8wau8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mxa8"]
+atlas = ExtResource("2_8wau8")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fdlq"]
+atlas = ExtResource("2_8wau8")
+region = Rect2(40, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wwt5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mxa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2fdlq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wv142"]
+size = Vector2(2, 2)
+
+[node name="PickableSquareSmall" instance=ExtResource("1_gvb61")]
+shape_name = 0
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_1wwt5")
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_wv142")

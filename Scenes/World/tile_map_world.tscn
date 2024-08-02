@@ -1,6 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://djvmayvb3ailu"]
+[gd_scene load_steps=15 format=3 uid="uid://djvmayvb3ailu"]
 
 [ext_resource type="Texture2D" uid="uid://bj5smsowye6l6" path="res://Texture/Environment/Platforms/Platform Black.png" id="1_lnpn2"]
+[ext_resource type="PackedScene" uid="uid://bw3kgdmpy6n7f" path="res://Scenes/World/Platforms/platform_destroyable.tscn" id="1_mxel2"]
+[ext_resource type="PackedScene" uid="uid://b8u1xmiwdl2e5" path="res://Scenes/Player/PickableShapes/pickable_circle.tscn" id="3_4ga1i"]
+[ext_resource type="PackedScene" uid="uid://cvbv1nbi7ip0d" path="res://Scenes/Player/PickableShapes/pickable_crown.tscn" id="4_0b4tg"]
+[ext_resource type="PackedScene" uid="uid://3vduwo44e61s" path="res://Scenes/Player/PickableShapes/pickable_shape.tscn" id="5_b2i2e"]
+[ext_resource type="PackedScene" uid="uid://d3jj7t7mrkcok" path="res://Scenes/Player/PickableShapes/pickable_square_big.tscn" id="6_n2uwj"]
+[ext_resource type="PackedScene" uid="uid://nq41vjl41orx" path="res://Scenes/Player/PickableShapes/pickable_square_small.tscn" id="7_ba5my"]
+[ext_resource type="PackedScene" uid="uid://bd7x8lfkv2v45" path="res://Scenes/Player/PickableShapes/pickable_tetris.tscn" id="8_uihx8"]
+[ext_resource type="PackedScene" uid="uid://cerixm3psvpou" path="res://Scenes/Player/PickableShapes/pickable_triangle_down.tscn" id="9_fmoxw"]
+[ext_resource type="PackedScene" uid="uid://oy2d0e3xncgx" path="res://Scenes/Player/PickableShapes/pickable_triangle_up.tscn" id="10_e5b0y"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_3a5bj"]
+resource_name = "Platform"
+scenes/2/scene = ExtResource("1_mxel2")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_regiy"]
 texture = ExtResource("1_lnpn2")
@@ -118,10 +131,23 @@ texture_region_size = Vector2i(4, 4)
 7:3/0/physics_layer_0/angular_velocity = 0.0
 7:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -2, -2, 2, 2, 2, 2, -2)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_bsrvi"]
+resource_name = "Collectables"
+scenes/1/scene = ExtResource("3_4ga1i")
+scenes/2/scene = ExtResource("4_0b4tg")
+scenes/3/scene = ExtResource("5_b2i2e")
+scenes/4/scene = ExtResource("6_n2uwj")
+scenes/5/scene = ExtResource("7_ba5my")
+scenes/6/scene = ExtResource("8_uihx8")
+scenes/7/scene = ExtResource("9_fmoxw")
+scenes/8/scene = ExtResource("10_e5b0y")
+
 [sub_resource type="TileSet" id="TileSet_1im0w"]
 tile_size = Vector2i(4, 4)
 physics_layer_0/collision_layer = 2
 sources/1 = SubResource("TileSetAtlasSource_regiy")
+sources/0 = SubResource("TileSetScenesCollectionSource_3a5bj")
+sources/2 = SubResource("TileSetScenesCollectionSource_bsrvi")
 
 [node name="TileMapWorld" type="TileMap"]
 tile_set = SubResource("TileSet_1im0w")

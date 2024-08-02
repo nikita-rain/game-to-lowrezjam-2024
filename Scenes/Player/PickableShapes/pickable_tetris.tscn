@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bd7x8lfkv2v45"]
+
+[ext_resource type="PackedScene" uid="uid://3vduwo44e61s" path="res://Scenes/Player/PickableShapes/pickable_shape.tscn" id="1_ddt7s"]
+[ext_resource type="Texture2D" uid="uid://br51ciwnyg6kb" path="res://Texture/Player/ShapeBlank-List.png" id="2_0v7w6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnrcd"]
+atlas = ExtResource("2_0v7w6")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5c45"]
+atlas = ExtResource("2_0v7w6")
+region = Rect2(48, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6usxj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fnrcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5c45")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_euf0r"]
+size = Vector2(8, 3)
+
+[node name="PickableTetris" instance=ExtResource("1_ddt7s")]
+shape_name = 6
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_6usxj")
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_euf0r")

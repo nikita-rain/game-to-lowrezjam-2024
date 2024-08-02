@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw3kgdmpy6n7f"]
+
+[ext_resource type="Script" path="res://Platform Destroyable.gd" id="1_13bmd"]
+[ext_resource type="Texture2D" uid="uid://clwx5sp2cjs8v" path="res://Texture/Environment/Platforms/Platform Destroyable.png" id="2_j3uhx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oc2pb"]
+size = Vector2(12, 4)
+
+[node name="Platform Destroyable" type="StaticBody2D"]
+position = Vector2(-4, 0)
+collision_layer = 6
+collision_mask = 5
+script = ExtResource("1_13bmd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 0)
+texture = ExtResource("2_j3uhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+shape = SubResource("RectangleShape2D_oc2pb")

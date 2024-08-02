@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://3vduwo44e61s"]
+
+[ext_resource type="Script" path="res://Scenes/Player/PickableShapes/PickableShape.gd" id="1_byw8l"]
+[ext_resource type="Resource" uid="uid://cyvvdeh218iui" path="res://Scenes/Resources/shape_data.tres" id="2_3ywyh"]
+[ext_resource type="Texture2D" uid="uid://br51ciwnyg6kb" path="res://Texture/Player/ShapeBlank-List.png" id="2_11pae"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es2xq"]
+atlas = ExtResource("2_11pae")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqun5"]
+atlas = ExtResource("2_11pae")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vmtev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_es2xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqun5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fg713"]
+size = Vector2(4, 4)
+
+[node name="PickableShape" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_byw8l")
+shape_data = ExtResource("2_3ywyh")
+shape_name = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vmtev")
+autoplay = "default"
+frame_progress = 0.138607
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fg713")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
