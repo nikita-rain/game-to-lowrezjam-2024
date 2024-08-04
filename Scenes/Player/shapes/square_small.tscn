@@ -106,6 +106,7 @@ animations = [{
 }]
 
 [node name="Square small" instance=ExtResource("1_i3nfe")]
+shape_name = 0
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource("RectangleShape2D_7403a")

@@ -31,6 +31,9 @@ func enable_shape_by_name(shape_name_to_enable, color_to_switch = color_id):
 			shape_id = x
 			shapes_change_state()
 
+func enable_by_id(item_id: int, type_name: ShapeData.type_item):
+	pass
+
 var shape_id = 0
 var color_id = 0
 func switch_shape():

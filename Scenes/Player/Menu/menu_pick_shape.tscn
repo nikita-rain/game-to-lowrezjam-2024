@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1kt6sxs0xs4e"]
+
+[ext_resource type="Texture2D" uid="uid://dcvold34xney5" path="res://Texture/Player/Menu-Sheet.png" id="1_ebopq"]
+[ext_resource type="Script" path="res://Scenes/Player/Menu/menu_pick.gd" id="1_femce"]
+[ext_resource type="Script" path="res://menu_pick_row.gd" id="2_xcsb2"]
+[ext_resource type="Resource" uid="uid://cyvvdeh218iui" path="res://Scenes/Resources/shape_data.tres" id="3_o4pl2"]
+
+[node name="Menu Pick Shape" type="Node2D" node_paths=PackedStringArray("row_list")]
+process_mode = 3
+position = Vector2(32, 12)
+script = ExtResource("1_femce")
+row_list = [NodePath("ShapeList"), NodePath("ColorList")]
+
+[node name="Back" type="Sprite2D" parent="."]
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 16)
+
+[node name="ShapeList" type="Node2D" parent="."]
+script = ExtResource("2_xcsb2")
+type_of_object = null
+shapes_data = ExtResource("3_o4pl2")
+
+[node name="Sprite2D" type="Sprite2D" parent="ShapeList"]
+position = Vector2(-28, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ShapeList"]
+position = Vector2(-20, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ShapeList"]
+position = Vector2(-12, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D4" type="Sprite2D" parent="ShapeList"]
+position = Vector2(-4, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D5" type="Sprite2D" parent="ShapeList"]
+position = Vector2(4, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D6" type="Sprite2D" parent="ShapeList"]
+position = Vector2(12, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D7" type="Sprite2D" parent="ShapeList"]
+position = Vector2(20, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D8" type="Sprite2D" parent="ShapeList"]
+position = Vector2(28, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="ColorList" type="Node2D" parent="."]
+position = Vector2(0, 8)
+script = ExtResource("2_xcsb2")
+type_of_object = 1
+shapes_data = ExtResource("3_o4pl2")
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorList"]
+position = Vector2(-28, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ColorList"]
+position = Vector2(-20, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D3" type="Sprite2D" parent="ColorList"]
+position = Vector2(-12, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D4" type="Sprite2D" parent="ColorList"]
+position = Vector2(-4, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D5" type="Sprite2D" parent="ColorList"]
+position = Vector2(4, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D6" type="Sprite2D" parent="ColorList"]
+position = Vector2(12, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D7" type="Sprite2D" parent="ColorList"]
+position = Vector2(20, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Sprite2D8" type="Sprite2D" parent="ColorList"]
+position = Vector2(28, -4)
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 48, 8, 8)
+
+[node name="Cursor" type="Node2D" parent="."]
+position = Vector2(-28, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Cursor"]
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 32, 8, 8)

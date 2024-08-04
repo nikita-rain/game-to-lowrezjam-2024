@@ -1,5 +1,7 @@
 class_name ShapeData extends Resource
 
+enum type_item {SHAPES, COLORS}
+
 enum shape_names {
 	SQUARE_SMALL, SQUARE, SQUARE_BIG, CIRCLE, 
 	TRIANGLE_UP, TRIANGLE_DOWN, TETRIS, CROWN}
@@ -18,3 +20,5 @@ var shape_is_aviable = {
 var color_is_aviable = [
 	true, true, false, false, 
 	false, false, false, false]
+	
+
