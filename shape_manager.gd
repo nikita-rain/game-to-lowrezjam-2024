@@ -1,12 +1,10 @@
 extends Node2D
 
-#FIXME: переделать фигурсы с полигонов на спрайты
+#FIXME: переписать это говно
 @export var player_collision_shape : CollisionShape2D
 var shapes: Array[Node]
-
-
+signal shape_updated()
 @export var shape_data: ShapeData
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +18,7 @@ func _ready():
 	enable_shape_by_name(shape_data.shape_names.SQUARE, color_id)
 	
 func enable_shape_by_name(shape_name_to_enable, color_to_switch = color_id):
-	color_id = color_to_switch
+	color_id = color_to_switch #FIXME нет логики проверки цвета
 	if shape_data.shape_is_aviable[shape_name_to_enable] == false:
 		push_error("попытка включить недоступную форму")
 		switch_shape()
@@ -31,8 +29,20 @@ func enable_shape_by_name(shape_name_to_enable, color_to_switch = color_id):
 			shape_id = x
 			shapes_change_state()
 
-func enable_by_id(item_id: int, type_name: ShapeData.type_item):
-	pass
+func enable_by_id(item_id: int, type_name: ShapeData.type_item = ShapeData.type_item.SHAPES):
+	match type_name:
+		ShapeData.type_item.COLORS:
+			if shape_data.color_is_aviable[item_id] == false:
+				push_error("попытка включить недоступный цвет")
+				return
+			color_id = item_id
+			shapes_change_state()
+		ShapeData.type_item.SHAPES:
+			if shape_data.shape_is_aviable[item_id] == false:
+				push_error("попытка включить недоступную форму")
+				return
+			shape_id = item_id
+			shapes_change_state()
 
 var shape_id = 0
 var color_id = 0
@@ -59,6 +69,8 @@ func shapes_change_state():
 			shapes[shape_id].enable_shape(color_id)
 			if player_collision_shape.shape != shapes[shape_id].collision.shape:
 				player_collision_shape.shape = shapes[shape_id].collision.shape
+		shapes[shape_id].change_color(color_id)
+		shape_updated.emit()
 	else:
 		push_error("Указана недоступная фигура")
 
@@ -89,3 +101,6 @@ func _on_player_switch_shape():
 
 func _on_player_switch_color():
 	switch_color()
+
+
+

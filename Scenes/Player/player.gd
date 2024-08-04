@@ -311,6 +311,9 @@ var shape_name_current
 #FIXME: добавить определение при инициализации
 func make_switch_shape():
 	switch_shape.emit()
+	check_new_shape()
+	
+func check_new_shape():
 	shape_name_current =  $ShapeManager.get_curr_shape_name()
 	if shape_name_current == ShapeData.shape_names.CIRCLE:
 		jump_max_count = 2
@@ -350,3 +353,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("menu_pick_shape"):
 		open_menu.emit(GameManager.menu_names.pick)
 	move_and_slide()
+
+
+func _on_shape_manager_shape_updated():
+	check_new_shape()

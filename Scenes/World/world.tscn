@@ -61,9 +61,11 @@ is_reversed = true
 [node name="StaticBody2D" parent="Platform2" index="3"]
 position = Vector2(0, 8)
 
+[connection signal="change_item" from="Camera/Menu Pick Shape" to="Player/ShapeManager" method="enable_by_id"]
 [connection signal="close_menu" from="Camera/Menu Pick Shape" to="." method="_on_menu_pick_shape_close_menu"]
 [connection signal="open_menu" from="Player" to="." method="_on_player_open_menu"]
 
 [editable path="Camera"]
+[editable path="Player"]
 [editable path="Platform1"]
 [editable path="Platform2"]

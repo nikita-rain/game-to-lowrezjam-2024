@@ -15,13 +15,15 @@ var cell_wrong_y = 48
 
 func _ready():
 	item_list = get_children()
-	item_vals = get_item_vals()
 	match type_of_object:
 		ShapeData.type_item.SHAPES:
 			region_rect_y = 48
 		ShapeData.type_item.COLORS:
 			region_rect_y = 48 + 8
-	
+	update_item()
+
+func update_item():
+	item_vals = get_item_vals()
 	if item_vals.size() != item_list.size():
 		push_error("Размер меню и существующих форм не соответствует")
 	for i in range(0, item_list.size()):
@@ -30,7 +32,6 @@ func _ready():
 			item_list[i].region_rect = Rect2(i * 8, region_rect_y, cell_w, cell_h)
 		else:
 			item_list[i].region_rect = Rect2(cell_wrong_x, cell_wrong_y, cell_w, cell_h)
-
 
 func get_item_vals():
 	match type_of_object:
@@ -44,6 +45,10 @@ func get_global_pos_node(id: int) -> Vector2:
 		push_error("Обращение на несуществующий индекс")
 		return Vector2.ZERO
 	return item_list[id].global_position #FIXME: поменять на position 
+
+
+func is_valid_cell(id:int):
+	return item_vals[id]
 
 func get_item_count():
 	return item_list.size()

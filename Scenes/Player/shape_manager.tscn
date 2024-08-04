@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b4d47i5clpg30"]
 
-[ext_resource type="Script" path="res://shape_manager.gd" id="1_f1rkm"]
+[ext_resource type="Script" path="res://shape_manager.gd" id="1_6hy5r"]
 [ext_resource type="Resource" uid="uid://cyvvdeh218iui" path="res://Scenes/Resources/shape_data.tres" id="2_6rhv6"]
 [ext_resource type="PackedScene" uid="uid://dwc7k44p6edac" path="res://Scenes/Player/shapes/triangle_down.tscn" id="3_4lmx4"]
 [ext_resource type="PackedScene" uid="uid://dqs4dqa4xqbrp" path="res://Scenes/Player/shapes/square.tscn" id="3_tjt7d"]
@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bnbmg75hu8f5x" path="res://Scenes/Player/shapes/crown.tscn" id="10_bsoas"]
 
 [node name="ShapeManager" type="Node2D"]
-script = ExtResource("1_f1rkm")
+script = ExtResource("1_6hy5r")
 shape_data = ExtResource("2_6rhv6")
 
 [node name="Square small" parent="." instance=ExtResource("4_aj4v5")]

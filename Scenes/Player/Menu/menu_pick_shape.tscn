@@ -7,6 +7,7 @@
 
 [node name="Menu Pick Shape" type="Node2D" node_paths=PackedStringArray("row_list")]
 process_mode = 3
+z_index = 20
 position = Vector2(32, 12)
 script = ExtResource("1_femce")
 row_list = [NodePath("ShapeList"), NodePath("ColorList")]
@@ -16,9 +17,24 @@ texture = ExtResource("1_ebopq")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 16)
 
+[node name="PickedShape" type="Node2D" parent="."]
+position = Vector2(-28, -4)
+
+[node name="Sprite2D" type="Sprite2D" parent="PickedShape"]
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 16, 8, 8)
+
+[node name="PickedColor" type="Node2D" parent="."]
+position = Vector2(-28, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="PickedColor"]
+texture = ExtResource("1_ebopq")
+region_enabled = true
+region_rect = Rect2(0, 16, 8, 8)
+
 [node name="ShapeList" type="Node2D" parent="."]
 script = ExtResource("2_xcsb2")
-type_of_object = null
 shapes_data = ExtResource("3_o4pl2")
 
 [node name="Sprite2D" type="Sprite2D" parent="ShapeList"]

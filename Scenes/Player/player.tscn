@@ -36,4 +36,5 @@ disabled = true
 
 [connection signal="switch_color" from="." to="ShapeManager" method="_on_player_switch_color"]
 [connection signal="switch_shape" from="." to="ShapeManager" method="_on_player_switch_shape"]
+[connection signal="shape_updated" from="ShapeManager" to="." method="_on_shape_manager_shape_updated"]
 [connection signal="body_entered" from="AreaDestroy" to="AreaDestroy" method="_on_body_entered"]
