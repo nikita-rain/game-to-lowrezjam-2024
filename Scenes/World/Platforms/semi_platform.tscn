@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://byotidfcrw5r4"]
+
+[ext_resource type="Texture2D" uid="uid://bmfvthu1e85x1" path="res://Texture/Environment/Platforms/Semi Platform.png" id="1_pr4iw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dveqi"]
+size = Vector2(12, 2)
+
+[node name="SemiPlatform" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_pr4iw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_dveqi")
+one_way_collision = true

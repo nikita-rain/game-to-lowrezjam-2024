@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://clwx5sp2cjs8v" path="res://Texture/Environment/Platforms/Platform Destroyable.png" id="2_j3uhx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oc2pb"]
-size = Vector2(12, 4)
+size = Vector2(16, 8)
 
 [node name="Platform Destroyable" type="StaticBody2D"]
-position = Vector2(-4, 0)
+position = Vector2(-2, -2)
 collision_layer = 6
 collision_mask = 5
 script = ExtResource("1_13bmd")
