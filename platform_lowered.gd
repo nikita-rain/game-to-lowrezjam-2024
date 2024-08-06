@@ -1,6 +1,5 @@
 class_name PlatformLowered extends Node2D
 
-@export var connected_active_nodes: Array[Node]
 signal update_signal(update_active)
 
 
@@ -33,9 +32,7 @@ func _ready():
 			node.add_point($start_point.position)
 			node.add_point($end_point.position)
 		
-	for node in connected_active_nodes:
-		if node.has_method("_on_update_signal"):
-			update_signal.connect(node._on_update_signal)
+
 
 
 func _physics_process(delta):

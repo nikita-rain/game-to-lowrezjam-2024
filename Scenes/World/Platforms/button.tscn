@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqs52x6tvyatq"]
+
+[ext_resource type="PackedScene" uid="uid://ddp4w7gvulwda" path="res://Scenes/World/Platforms/platform_lowered.tscn" id="1_laevf"]
+[ext_resource type="Texture2D" uid="uid://tx15n8buh0mk" path="res://Texture/Environment/Platforms/Button.png" id="2_brjvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6iqy"]
+size = Vector2(8, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvnf0"]
+size = Vector2(6, 2)
+
+[node name="Button" instance=ExtResource("1_laevf")]
+z_index = -2
+position = Vector2(0, 4)
+is_move_back = false
+is_move_back_after_end_point = false
+platform_can_press = true
+
+[node name="end_point" parent="." index="1"]
+position = Vector2(0, 4)
+
+[node name="Line2D" parent="." index="2"]
+visible = false
+
+[node name="Sprite2D" parent="StaticBody2D" index="0"]
+texture = ExtResource("2_brjvs")
+
+[node name="CollisionShape2D" parent="StaticBody2D" index="1"]
+shape = SubResource("RectangleShape2D_c6iqy")
+
+[node name="CollisionShape2D" parent="StaticBody2D/Area2D" index="0"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_dvnf0")
